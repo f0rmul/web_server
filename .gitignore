@@ -33,6 +33,7 @@
 *.app
 
 build/
+logs/
 
 CMakeLists.txt.user
 CMakeCache.txt
