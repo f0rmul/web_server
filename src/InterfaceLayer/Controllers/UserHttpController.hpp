@@ -1,6 +1,7 @@
 #pragma once
 #include <drogon/HttpController.h>
 #include <unordered_map>
+
 #include "../DTO/User_DTO.hpp"
 
 namespace drogon
@@ -33,6 +34,7 @@ namespace drogon
 		return user;
 	}
 }
+
 class UserHttpController final : public drogon::HttpController<UserHttpController>
 {
 	using Callback = std::function<void(const drogon::HttpResponsePtr&)>;
@@ -40,7 +42,7 @@ public:
 
 	METHOD_LIST_BEGIN
 		ADD_METHOD_TO(UserHttpController::create_user,  "/new",	           { drogon::Post   });
-	    ADD_METHOD_TO(UserHttpController::get_user,     "/user",	       { drogon::Get    });
+	    ADD_METHOD_TO(UserHttpController::get_user,     "/get/user",	   { drogon::Get    });
 		ADD_METHOD_TO(UserHttpController::get_all_users,"/get/users",      { drogon::Get    });
 		ADD_METHOD_TO(UserHttpController::update_user,  "/update/user",    { drogon::Patch  });
 		ADD_METHOD_TO(UserHttpController::delete_user,  "/delete/user",    { drogon::Delete });
@@ -51,6 +53,8 @@ public:
 	void get_all_users(dto::User&&, Callback&&);
 	void update_user  (dto::User&&, Callback&&);
 	void delete_user  (dto::User&&, Callback&&);
+
+private:
 };
 
 
@@ -58,8 +62,6 @@ void UserHttpController::create_user(dto::User&& user, Callback&& callback)
 {
 	using namespace drogon;
 	LOG_INFO << "UserHttpController::create_user()\n";
-
-	
 }
 
 void UserHttpController::get_user(dto::User&& user, Callback&& callback)
@@ -67,6 +69,7 @@ void UserHttpController::get_user(dto::User&& user, Callback&& callback)
 	using namespace drogon;
 	LOG_INFO << "UserHttpController::get_user()\n";
 	
+
 }
 
 void UserHttpController::get_all_users(dto::User&& user, Callback&& callback)

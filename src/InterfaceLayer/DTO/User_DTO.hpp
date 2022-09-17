@@ -1,4 +1,6 @@
 #pragma once
+#include <optional>
+
 
 namespace dto
 {
@@ -8,7 +10,7 @@ namespace dto
 
 		User() = default;
 		User(std::uint32_t id, std::string name, std::string email) :
-			u_id   { id },
+			u_id{ id },
 			u_name{ std::move(name) },
 			u_email{ std::move(email) } {}
 
@@ -16,15 +18,13 @@ namespace dto
 		void set_name(std::string name) { u_name = std::move(name); }
 		void set_email(std::string email) { u_email = std::move(email); }
 
-		[[nodiscard]] std::uint32_t   get_id() const { return u_id; }
-		[[nodiscard]] std::string	  get_name() const { return u_name; }
-		[[nodiscard]] std::string	  get_email() const { return u_email; }
+		[[nodiscard]] std::optional<std::uint32_t>   get_id()   const { return u_id; }
+		[[nodiscard]] std::optional<std::string>	 get_name() const { return u_name; }
+		[[nodiscard]] std::optional<std::string>     get_email()const { return u_email; }
 	private:
-		std::uint32_t u_id{};
-		std::string	  u_name{};
-		std::string   u_email{};
+		std::optional<std::uint32_t> u_id;
+		std::optional<std::string>	 u_name;
+		std::optional<std::string>   u_email;
 	};
-
 }
-
 
