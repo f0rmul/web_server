@@ -1,13 +1,15 @@
 ﻿#include <iostream>
 #include <drogon/drogon.h>
 #include "InterfaceLayer/Controllers/UserHttpController.hpp"
+#include "DomainLayer/Services/UserManagmentService.hpp"
+
 using namespace std;
 
 int main()
 {
 	try
 	{
-		cout << drogon::banner << endl;
+	    cout << drogon::banner << endl;
 		drogon::app().loadConfigFile("config.json").run();
 	}
 	catch (const std::exception& e)
