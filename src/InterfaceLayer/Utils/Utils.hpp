@@ -2,10 +2,9 @@
 #include <drogon/HttpAppFramework.h>
 #include "../DTO/User_DTO.hpp"
 
-namespace drogon
+namespace utils
 {
-	template <>
-	inline dto::User fromRequest(const HttpRequest& req)
+	inline dto::User SerializeRequest(drogon::HttpRequestPtr req_ptr)
 	{
 		LOG_INFO << "fromRequest()\n";
 		const static std::unordered_map<std::string, std::function<void(dto::User&, std::string)>> perform_map
@@ -24,7 +23,7 @@ namespace drogon
 			}}
 		};
 		dto::User user;
-		for (auto params = req.getParameters(); const auto & param : params)
+		for (auto params = req_ptr->getParameters(); const auto & param : params)
 		{
 			auto&& [key, value] = param;
 			perform_map.at(key)(user, std::move(value));

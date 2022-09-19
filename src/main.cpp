@@ -8,8 +8,9 @@ using namespace std;
 int main()
 {
 	try
-	{
-	    cout << drogon::banner << endl;
+	{	
+		system("chcp 1251");
+		cout << drogon::banner << endl;
 		drogon::app().loadConfigFile("config.json").run();
 	}
 	catch (const std::exception& e)
